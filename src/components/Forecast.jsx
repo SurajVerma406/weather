@@ -1,6 +1,16 @@
 import React from 'react';
 
 const Forecast = ({ foreCastDay }) => {
+    console.log(foreCastDay ? foreCastDay[0] : foreCastDay);
+    
+
+    const getDayToday = (dateStr) => {
+        const date = new Date(dateStr);
+
+        const day = date.toLocaleDateString('en-US', { weekday: 'long' });
+        return day;
+    }
+
     return (
         <>
             <div className="flex justify-center items-center">
@@ -10,9 +20,9 @@ const Forecast = ({ foreCastDay }) => {
                         <thead className="text-xs text-gray-700 normal-case bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" className="px-6 py-3"></th>
-                                <th scope="col" className="px-6 py-3">Monday</th>
-                                <th scope="col" className="px-6 py-3">Tuesday</th>
-                                <th scope="col" className="px-6 py-3">Wednesday</th>
+                                <th scope="col" className="px-6 py-3">{foreCastDay ? getDayToday(foreCastDay[0].date) : 'Monday'}</th>
+                                <th scope="col" className="px-6 py-3">{foreCastDay ? getDayToday(foreCastDay[1].date) : 'Tueesday'}</th>
+                                <th scope="col" className="px-6 py-3">{foreCastDay ? getDayToday(foreCastDay[2].date) : 'Wednesday'}</th>
                             </tr>
                         </thead>
                         <tbody>
